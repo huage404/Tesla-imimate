@@ -1,0 +1,1 @@
+"F:\software\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-3ge6qmyu8b4addf1 --n quickstartFunctions --r --project "D:\code\Web\Tesla-imitate" --report_first --report
