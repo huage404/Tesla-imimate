@@ -6,35 +6,7 @@ Page({
    */
   data: {
     currentSwiperIndex: 0,
-    swiperItems: [
-      {
-        title: 'ModelS',
-        imageUrl: 'https://desk-fd.zol-img.com.cn/t_s960x600c5/g3/M07/0E/0C/ChMlWF7oPWqIRHTaAB_bE3vS5AYAAU0SgAWHWQAH9sr405.jpg',
-        config: [
-          {title: '647', subtitle: '公里续航'},
-          {title: '647', subtitle: '公里续航'},
-          {title: '647', subtitle: '公里续航'}
-        ]
-      },
-      {
-        title: 'ModelM',
-        imageUrl: 'https://desk-fd.zol-img.com.cn/t_s960x600c5/g3/M07/0E/0C/ChMlWF7oPWqIRHTaAB_bE3vS5AYAAU0SgAWHWQAH9sr405.jpg',
-        config: [
-          {title: '600', subtitle: '公里续航'},
-          {title: '600', subtitle: '公里续航'},
-          {title: '600', subtitle: '公里续航'}
-        ]
-      },
-      {
-        title: 'ModelY',
-        imageUrl: 'https://desk-fd.zol-img.com.cn/t_s960x600c5/g3/M07/0E/0C/ChMlWF7oPWqIRHTaAB_bE3vS5AYAAU0SgAWHWQAH9sr405.jpg',
-        config: [
-          {title: '500', subtitle: '公里续航'},
-          {title: '500', subtitle: '公里续航'},
-          {title: '500', subtitle: '公里续航'}
-        ]
-      }
-    ]
+    swiperList: []
   },
 
   onSwiperChange(e){
@@ -44,11 +16,33 @@ Page({
     })
   },
 
+  // 加载轮播图数据
+  _loadSwiper(){
+    this.db.collection('swiper').get().then(res => {
+      console.log('ww', res.data);
+
+      res.data.forEach((item) => {
+        item.config.forEach((fig, index) => {
+          const splitItems = fig.split('|');
+          item.config[index] = {
+            title: splitItems[0],
+            subtitle: splitItems[1]
+          }
+        })
+      })
+
+      this.setData({
+        swiperList: res.data
+      })
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.db = wx.cloud.database();
+    this._loadSwiper();
   },
 
   /**

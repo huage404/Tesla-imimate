@@ -1,14 +1,14 @@
 <view class="page">
   <view class="swiper">
     <swiper bindchange="onSwiperChange">
-      <swiper-item wx:for="{{swiperItems}}" wx:key="index">
-        <image src="{{item.imageUrl}}" mode="aspectFill" />
+      <swiper-item wx:for="{{swiperList}}" wx:key="index">
+        <image src="{{item.cover}}" mode="aspectFill" />
       </swiper-item>
     </swiper>
     <view class="swiper-float-content">
       <view 
         class="title"
-        wx:for="{{swiperItems}}"
+        wx:for="{{swiperList}}"
         wx:key="index"
         wx:if="{{ index === currentSwiperIndex }}"
       >
@@ -17,7 +17,7 @@
 
       <view
         class="descriptions-area"
-        wx:for="{{swiperItems}}"
+        wx:for="{{swiperList}}"
         wx:key="index"
         wx:if="{{ currentSwiperIndex === index }}"
       >
@@ -44,8 +44,49 @@
       </view>
 
       <view class="swiper-dots">
-        <view wx:for="{{swiperItems}}" wx:key="index" class="dot {{ currentSwiperIndex !== index || 'active' }}"></view>
+        <view wx:for="{{swiperList}}" wx:key="index" class="dot {{ currentSwiperIndex !== index || 'active' }}"></view>
       </view>
+    </view>
+  </view>
+
+  <view class="magazine">
+    <view class="title">
+      T-Zone
+    </view>
+
+    <image class="cover" mode="aspectFill" src="https://img1.baidu.com/it/u=2751320733,572564193&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=705" />
+
+    <view class="name">2022年4月号</view>
+  </view>
+
+  <view class="icon-banner">
+    <image class="banner-bg credit-card" src="https://china-community-app.tesla.cn/wechatmini/credit_card.png" />
+    <view class="content">
+      <view class="info">
+        <view class="title">新手视频</view>
+        <view class="subtitle">观看视频</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="icon-banner">
+    <image class="banner-bg" src="https://china-community-app.tesla.cn/wechatmini/card_bg.png" />
+    <view class="content">
+      <view class="info">
+        <view class="title">贷款计算器</view>
+        <view class="subtitle">定制我的金融方案</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="icon-box-area">
+    <view class="icon-box">
+      <image class="icon" mode="widthFix" src="../../images/ic_clean_engry_policy.svg" />
+      <view class="title">新能源政策</view>
+    </view>
+    <view class="icon-box">
+      <image class="icon circle" mode="widthFix" src="../../images/ic_traidin.svg" />
+      <view class="title">车辆置换</view>
     </view>
   </view>
 </view>
